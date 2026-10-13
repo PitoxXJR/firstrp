@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-PT"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Preço mínimo e máximo para vender comida, armas, coletes, droga e mais entre jogadores no First RP.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="First RP">
+<meta property="og:title" content="Preços entre Jogadores · First RP">
+<meta property="og:description" content="Preço mínimo e máximo para vender comida, armas, coletes, droga e mais entre jogadores no First RP.">
+<meta name="theme-color" content="#f5b428">
+<link rel="icon" type="image/png" href="../logo.png">
+<title>Preços entre Jogadores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
+<style>
+/* Layout: identidade First RP — fundo do logo (azul-noite quase preto), branco e dourado do "RP".
+   Hero com o logo e o traço dourado; barra de pesquisa fixa; secções com cartões de tabela. Tema único escuro, de propósito (é a marca). */
+:root{
+  --bg:#0d0f15; --bg2:#12141c; --card:#171a23; --card2:#1d2130; --line:#2a2e3b; --line2:#353a4a;
+  --ink:#f4f5f8; --muted:#9aa0b2; --gold:#f5b428; --gold-ink:#1a1405; --gold-soft:rgba(245,180,40,.12);
+  --f-display:"Poppins","Arial Black",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{color:var(--ink);font:15px/1.55 var(--f-body);margin:0;padding-inline:16px;padding-block:0 56px;
+  background:
+    radial-gradient(900px 420px at 85% -120px, rgba(245,180,40,.16), transparent 70%),
+    radial-gradient(700px 380px at -10% 10%, rgba(80,96,160,.12), transparent 70%),
+    var(--bg);
+  background-repeat:no-repeat}
+.wrap{max-width:1180px;margin:0 auto}
+/* hero */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:22px 28px;align-items:center;padding-block:40px 26px}
+.logo{width:112px;height:112px;border-radius:26px;box-shadow:0 18px 50px rgba(0,0,0,.55),0 0 0 1px var(--line2);display:block}
+.hero-t{min-width:0;display:grid;gap:8px}
+.eyebrow{font:700 12px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+h1{font:900 clamp(38px,6.4vw,72px)/.95 var(--f-display);margin:0;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
+h1 .rule{display:block;width:84px;height:5px;background:var(--gold);border-radius:3px;margin-top:16px}
+.intro{color:var(--muted);max-width:66ch;margin:4px 0 0}
+.facts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+.fact{font:600 12.5px/1 var(--f-body);color:var(--ink);background:var(--card);border:1px solid var(--line);padding:9px 12px;border-radius:999px}
+.fact b{color:var(--gold);font-weight:700}
+/* barra */
+.bar{grid-template-columns:minmax(0,1fr);position:sticky;top:env(safe-area-inset-top,0px);z-index:5;padding-block:12px;display:grid;gap:10px;
+  background:linear-gradient(var(--bg) 78%,rgba(13,15,21,0));}
+.search{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:6px 6px 6px 14px}
+.search:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.search svg{flex:none;opacity:.7}
+.search input{flex:1;min-width:0;font:600 15px var(--f-body);padding:9px 4px;border:0;background:transparent;color:var(--ink);outline:none}
+.search input::placeholder{color:var(--muted);font-weight:500}
+.count{font:700 12px var(--f-mono);color:var(--gold-ink);background:var(--gold);padding:7px 10px;border-radius:9px;white-space:nowrap}
+.bar>*{min-width:0}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;font:700 12.5px/1 var(--f-body);color:var(--muted);text-decoration:none;padding:9px 13px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);transition:color .15s,border-color .15s}
+.chip:hover,.chip:focus-visible{border-color:var(--gold);color:var(--gold);outline:none}
+/* secções */
+.sec{padding-block:34px 4px;scroll-margin-top:130px}
+.sec-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.sec-h h2{font:800 30px/1.05 var(--f-display);text-transform:uppercase;margin:0;letter-spacing:.005em}
+.sec-h h2::before{content:"";display:inline-block;width:10px;height:10px;background:var(--gold);border-radius:2px;margin-right:12px;vertical-align:.2em}
+.sec-h p{margin:0;color:var(--muted);flex:1 1 320px;max-width:72ch;font-size:14px}
+.blocks{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:14px;align-items:start}
+.blocks.one{grid-template-columns:1fr}
+.block{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:16px 18px 10px;min-width:0}
+.block h3{font:800 18px/1.15 var(--f-display);text-transform:uppercase;letter-spacing:.02em;margin:0 0 4px;color:var(--ink)}
+.block h4{font:700 11px/1 var(--f-body);text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin:18px 0 6px}
+.note{margin:0 0 8px;color:var(--muted);font-size:13px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{text-align:left;font:700 10.5px/1 var(--f-body);text-transform:uppercase;letter-spacing:.14em;color:var(--muted);padding:9px 8px;border-bottom:1px solid var(--line2)}
+td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.num{text-align:right;white-space:nowrap;font:700 14px var(--f-mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+td.num:last-child{color:var(--gold)}
+th.num{font:700 10.5px/1 var(--f-body)}
+.sub{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+tbody tr:hover td{background:rgba(255,255,255,.025)}
+.empty{padding:40px 0;color:var(--muted);text-align:center}
+.foot{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;justify-content:space-between}
+.foot .brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}
+.foot .brand img{width:30px;height:30px;border-radius:8px}
+@media (max-width:620px){.hero{grid-template-columns:1fr;padding-block:28px 18px}.logo{width:84px;height:84px;border-radius:20px}.sec-h h2{font-size:24px}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}.chip{transition:color .15s,border-color .15s}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="hero">
+    <img class="logo" src="../logo.png" alt="First RP">
+    <div class="hero-t">
+      <div class="eyebrow">First RP · Los Santos</div>
+      <h1>Preços entre Jogadores<span class="rule"></span></h1>
+      <p class="intro">Quanto podes pedir quando vendes a outro jogador. Vender abaixo do mínimo ou acima do máximo pode ser considerado abuso da economia. Valores por unidade, salvo indicação.</p>
+    </div>
+    <div class="facts"><span class="fact">Atualizado a <b>12/10/2026</b></span><span class="fact">Preço <b>mínimo</b> e <b>máximo</b> por unidade</span><span class="fact">Fora destes valores = <b>abuso da economia</b></span></div>
+  </header>
+
+  <div class="bar">
+    <label class="search" for="q">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <input id="q" type="search" placeholder="Pesquisar: colete, cocaína, rifle, hambúrguer…" autocomplete="off" aria-label="Pesquisar">
+      <span class="count" id="count">82 itens</span>
+    </label>
+    <nav class="chips" aria-label="Secções"><a href="#comida" class="chip">Comida e bebida</a><a href="#utilidades" class="chip">Utilidades e saúde</a><a href="#recursos" class="chip">Recursos e materiais</a><a href="#pesca" class="chip">Pesca e caça</a><a href="#joias" class="chip">Joias e penhores</a><a href="#armas-legais" class="chip">Armas legais</a><a href="#armas" class="chip">Armas ilegais</a><a href="#pecas" class="chip">Corpos, blueprints e peças</a><a href="#municoes" class="chip">Munições</a><a href="#equipamento" class="chip">Coletes e equipamento</a><a href="#droga" class="chip">Droga</a></nav>
+  </div>
+
+  <main id="main"><section id="comida" class="sec"><header class="sec-h"><h2>Comida e bebida</h2><p>Valores por unidade. O mínimo é o preço da loja ou do restaurante.</p></header><div class="blocks one"><article class="block"><div class="tw"><table><thead><tr><th>Artigo</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody><tr data-n="agua$2$5  comida e bebida"><td>Água</td><td class="num">$2</td><td class="num">$5</td></tr><tr data-n="cola$3$6  comida e bebida"><td>Cola</td><td class="num">$3</td><td class="num">$6</td></tr><tr data-n="hamburguer$8$15  comida e bebida"><td>Hambúrguer</td><td class="num">$8</td><td class="num">$15</td></tr><tr data-n="hamburguer classicoburgershot$20$30  comida e bebida"><td>Hambúrguer Clássico<span class="sub">BurgerShot</span></td><td class="num">$20</td><td class="num">$30</td></tr><tr data-n="hamburguer bbqburgershot$22$33  comida e bebida"><td>Hambúrguer BBQ<span class="sub">BurgerShot</span></td><td class="num">$22</td><td class="num">$33</td></tr><tr data-n="sanduiche de carneburgershot$25$38  comida e bebida"><td>Sanduíche de Carne<span class="sub">BurgerShot</span></td><td class="num">$25</td><td class="num">$38</td></tr><tr data-n="whopper steakhouseburgershot$35$50  comida e bebida"><td>Whopper Steakhouse<span class="sub">BurgerShot</span></td><td class="num">$35</td><td class="num">$50</td></tr><tr data-n="bebidas burgershotcola, chillwave, fizzberry, lemonlush, zesty zing$8$12  comida e bebida"><td>Bebidas BurgerShot<span class="sub">Cola, Chillwave, Fizzberry, Lemonlush, Zesty Zing</span></td><td class="num">$8</td><td class="num">$12</td></tr><tr data-n="menu burgershothamburguer classico + cola$25$38  comida e bebida"><td>Menu BurgerShot<span class="sub">Hambúrguer Clássico + Cola</span></td><td class="num">$25</td><td class="num">$38</td></tr><tr data-n="pratos e entradas do pearl's$50$75  comida e bebida"><td>Pratos e entradas do Pearl's</td><td class="num">$50</td><td class="num">$75</td></tr><tr data-n="bebidas e cafes do pearl's$50$75  comida e bebida"><td>Bebidas e cafés do Pearl's</td><td class="num">$50</td><td class="num">$75</td></tr><tr data-n="menu pearl'ssalmao grelhado + limonada$60$90  comida e bebida"><td>Menu Pearl's<span class="sub">Salmão Grelhado + Limonada</span></td><td class="num">$60</td><td class="num">$90</td></tr></tbody></table></div></article></div></section><section id="utilidades" class="sec"><header class="sec-h"><h2>Utilidades e saúde</h2></header><div class="blocks one"><article class="block"><div class="tw"><table><thead><tr><th>Artigo</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody><tr data-n="telemovel$500$1.000  utilidades e saude"><td>Telemóvel</td><td class="num">$500</td><td class="num">$1.000</td></tr><tr data-n="radio$200$400  utilidades e saude"><td>Rádio</td><td class="num">$200</td><td class="num">$400</td></tr><tr data-n="kit de reparacao$250$450  utilidades e saude"><td>Kit de Reparação</td><td class="num">$250</td><td class="num">$450</td></tr><tr data-n="kit de reparacao avancado$700$1.200  utilidades e saude"><td>Kit de Reparação Avançado</td><td class="num">$700</td><td class="num">$1.200</td></tr><tr data-n="kit de limpeza$150$300  utilidades e saude"><td>Kit de Limpeza</td><td class="num">$150</td><td class="num">$300</td></tr><tr data-n="picareta$100$200  utilidades e saude"><td>Picareta</td><td class="num">$100</td><td class="num">$200</td></tr><tr data-n="cana de pesca$50$120  utilidades e saude"><td>Cana de Pesca</td><td class="num">$50</td><td class="num">$120</td></tr><tr data-n="isco de pescapor unidade$1$3  utilidades e saude"><td>Isco de Pesca<span class="sub">por unidade</span></td><td class="num">$1</td><td class="num">$3</td></tr><tr data-n="ligadura$15$30  utilidades e saude"><td>Ligadura</td><td class="num">$15</td><td class="num">$30</td></tr><tr data-n="kit medico$150$300  utilidades e saude"><td>Kit Médico</td><td class="num">$150</td><td class="num">$300</td></tr></tbody></table></div></article></div></section><section id="recursos" class="sec"><header class="sec-h"><h2>Recursos e materiais</h2><p>O mínimo é o que o sucateiro e as empresas já pagam.</p></header><div class="blocks one"><article class="block"><div class="tw"><table><thead><tr><th>Artigo</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody><tr data-n="ferro / cobre / aluminiopor unidade$6$12  recursos e materiais"><td>Ferro / Cobre / Alumínio<span class="sub">por unidade</span></td><td class="num">$6</td><td class="num">$12</td></tr><tr data-n="aco / sucata / plastico / vidro / borrachapor unidade$6$12  recursos e materiais"><td>Aço / Sucata / Plástico / Vidro / Borracha<span class="sub">por unidade</span></td><td class="num">$6</td><td class="num">$12</td></tr><tr data-n="minerio (ferro, cobre, aluminio)por unidade$4$10  recursos e materiais"><td>Minério (ferro, cobre, alumínio)<span class="sub">por unidade</span></td><td class="num">$4</td><td class="num">$10</td></tr><tr data-n="pedrapor unidade$3$6  recursos e materiais"><td>Pedra<span class="sub">por unidade</span></td><td class="num">$3</td><td class="num">$6</td></tr><tr data-n="tecidopor unidade$6$12  recursos e materiais"><td>Tecido<span class="sub">por unidade</span></td><td class="num">$6</td><td class="num">$12</td></tr><tr data-n="linhopor unidade$2$5  recursos e materiais"><td>Linho<span class="sub">por unidade</span></td><td class="num">$2</td><td class="num">$5</td></tr><tr data-n="celula de litiopor unidade$12$25  recursos e materiais"><td>Célula de Lítio<span class="sub">por unidade</span></td><td class="num">$12</td><td class="num">$25</td></tr><tr data-n="residuo quimicopor unidade$8$15  recursos e materiais"><td>Resíduo Químico<span class="sub">por unidade</span></td><td class="num">$8</td><td class="num">$15</td></tr></tbody></table></div></article></div></section><section id="pesca" class="sec"><header class="sec-h"><h2>Pesca e caça</h2></header><div class="blocks one"><article class="block"><div class="tw"><table><thead><tr><th>Artigo</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody><tr data-n="peixe (qualquer especie)por unidade$20$40  pesca e caca"><td>Peixe (qualquer espécie)<span class="sub">por unidade</span></td><td class="num">$20</td><td class="num">$40</td></tr><tr data-n="caixa vazia de peixe$50$75  pesca e caca"><td>Caixa Vazia de peixe</td><td class="num">$50</td><td class="num">$75</td></tr><tr data-n="caixa de peixe$500$750  pesca e caca"><td>Caixa de Peixe</td><td class="num">$500</td><td class="num">$750</td></tr><tr data-n="carne de cacapor unidade$15$40  pesca e caca"><td>Carne de Caça<span class="sub">por unidade</span></td><td class="num">$15</td><td class="num">$40</td></tr><tr data-n="couro de animalpor unidade$20$60  pesca e caca"><td>Couro de Animal<span class="sub">por unidade</span></td><td class="num">$20</td><td class="num">$60</td></tr></tbody></table></div></article></div></section><section id="joias" class="sec"><header class="sec-h"><h2>Joias e penhores</h2><p>O mínimo é o que a casa de penhores paga.</p></header><div class="blocks one"><article class="block"><div class="tw"><table><thead><tr><th>Artigo</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody><tr data-n="corrente dourada$17$35  joias e penhores"><td>Corrente Dourada</td><td class="num">$17</td><td class="num">$35</td></tr><tr data-n="anel de diamante$46$90  joias e penhores"><td>Anel de Diamante</td><td class="num">$46</td><td class="num">$90</td></tr><tr data-n="relogio dourado$58$115  joias e penhores"><td>Relógio Dourado</td><td class="num">$58</td><td class="num">$115</td></tr><tr data-n="diamante$75$150  joias e penhores"><td>Diamante</td><td class="num">$75</td><td class="num">$150</td></tr><tr data-n="corrente de ouro 10k$92$185  joias e penhores"><td>Corrente de Ouro 10K</td><td class="num">$92</td><td class="num">$185</td></tr><tr data-n="barra de ouro$335$670  joias e penhores"><td>Barra de Ouro</td><td class="num">$335</td><td class="num">$670</td></tr></tbody></table></div></article></div></section><section id="armas-legais" class="sec"><header class="sec-h"><h2>Armas legais</h2><p>Venda só a quem tiver a licença adequada.</p></header><div class="blocks one"><article class="block"><div class="tw"><table><thead><tr><th>Artigo</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody><tr data-n="pistola (com licenca de porte de arma)so a quem tiver licenca$750$1.500  armas legais"><td>Pistola (com licença de porte de arma)<span class="sub">Só a quem tiver licença</span></td><td class="num">$750</td><td class="num">$1.500</td></tr><tr data-n="faca$50$100  armas legais"><td>Faca</td><td class="num">$50</td><td class="num">$100</td></tr><tr data-n="taco de basebol$30$60  armas legais"><td>Taco de Basebol</td><td class="num">$30</td><td class="num">$60</td></tr><tr data-n="mosquete (caca)$400$600  armas legais"><td>Mosquete (caça)</td><td class="num">$400</td><td class="num">$600</td></tr></tbody></table></div></article></div></section><section id="armas" class="sec"><header class="sec-h"><h2>Armas ilegais</h2><p>O máximo é o custo de comprar as peças no mercado negro. O mínimo cobre os materiais para as fabricar.</p></header><div class="blocks one"><article class="block"><div class="tw"><table><thead><tr><th>Artigo</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody><tr data-n="pistola ap$13.000$29.500  armas ilegais"><td>Pistola AP</td><td class="num">$13.000</td><td class="num">$29.500</td></tr><tr data-n="machine pistol$13.000$29.500  armas ilegais"><td>Machine Pistol</td><td class="num">$13.000</td><td class="num">$29.500</td></tr><tr data-n="pistola tec$13.000$29.500  armas ilegais"><td>Pistola Tec</td><td class="num">$13.000</td><td class="num">$29.500</td></tr><tr data-n="micro smg$14.500$33.500  armas ilegais"><td>Micro SMG</td><td class="num">$14.500</td><td class="num">$33.500</td></tr><tr data-n="smg mk2$15.500$34.500  armas ilegais"><td>SMG MK2</td><td class="num">$15.500</td><td class="num">$34.500</td></tr><tr data-n="combat pdw$25.000$40.500  armas ilegais"><td>Combat PDW</td><td class="num">$25.000</td><td class="num">$40.500</td></tr><tr data-n="rifle compacto$24.500$50.500  armas ilegais"><td>Rifle Compacto</td><td class="num">$24.500</td><td class="num">$50.500</td></tr><tr data-n="pistola .50$21.500$35.000  armas ilegais"><td>Pistola .50</td><td class="num">$21.500</td><td class="num">$35.000</td></tr><tr data-n="smg de assalto$27.000$56.000  armas ilegais"><td>SMG de Assalto</td><td class="num">$27.000</td><td class="num">$56.000</td></tr><tr data-n="rifle de assalto$37.500$72.500  armas ilegais"><td>Rifle de Assalto</td><td class="num">$37.500</td><td class="num">$72.500</td></tr><tr data-n="rifle bullpup$37.500$72.500  armas ilegais"><td>Rifle Bullpup</td><td class="num">$37.500</td><td class="num">$72.500</td></tr><tr data-n="carabina especial$37.500$72.500  armas ilegais"><td>Carabina Especial</td><td class="num">$37.500</td><td class="num">$72.500</td></tr><tr data-n="rifle avancado$42.000$75.500  armas ilegais"><td>Rifle Avançado</td><td class="num">$42.000</td><td class="num">$75.500</td></tr><tr data-n="rifle de assalto mk2$50.500$81.500  armas ilegais"><td>Rifle de Assalto MK2</td><td class="num">$50.500</td><td class="num">$81.500</td></tr><tr data-n="rifle bullpup mk2$50.500$81.500  armas ilegais"><td>Rifle Bullpup MK2</td><td class="num">$50.500</td><td class="num">$81.500</td></tr><tr data-n="carabina especial mk2$50.500$81.500  armas ilegais"><td>Carabina Especial MK2</td><td class="num">$50.500</td><td class="num">$81.500</td></tr></tbody></table></div></article></div></section><section id="pecas" class="sec"><header class="sec-h"><h2>Corpos, blueprints e peças</h2><p>O máximo é o preço do mercado negro.</p></header><div class="blocks one"><article class="block"><div class="tw"><table><thead><tr><th>Artigo</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody><tr data-n="corpo de pistola$2.500$8.350  corpos, blueprints e pecas"><td>Corpo de Pistola</td><td class="num">$2.500</td><td class="num">$8.350</td></tr><tr data-n="corpo de smg$4.000$12.500  corpos, blueprints e pecas"><td>Corpo de SMG</td><td class="num">$4.000</td><td class="num">$12.500</td></tr><tr data-n="corpo de rifle$7.750$25.000  corpos, blueprints e pecas"><td>Corpo de Rifle</td><td class="num">$7.750</td><td class="num">$25.000</td></tr><tr data-n="blueprint media (smg)$4.000$16.700  corpos, blueprints e pecas"><td>Blueprint Média (SMG)</td><td class="num">$4.000</td><td class="num">$16.700</td></tr><tr data-n="blueprint pesada (rifle)$8.000$33.300  corpos, blueprints e pecas"><td>Blueprint Pesada (Rifle)</td><td class="num">$8.000</td><td class="num">$33.300</td></tr><tr data-n="pecas de armapor unidade$140$290  corpos, blueprints e pecas"><td>Peças de Arma<span class="sub">por unidade</span></td><td class="num">$140</td><td class="num">$290</td></tr><tr data-n="acessorios (carregador, punho, silenciador, mira, lanterna, compensador)por unidade$400$1.250  corpos, blueprints e pecas"><td>Acessórios (carregador, punho, silenciador, mira, lanterna, compensador)<span class="sub">por unidade</span></td><td class="num">$400</td><td class="num">$1.250</td></tr></tbody></table></div></article></div></section><section id="municoes" class="sec"><header class="sec-h"><h2>Munições</h2></header><div class="blocks one"><article class="block"><div class="tw"><table><thead><tr><th>Artigo</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody><tr data-n="municao de pistola (com licenca, ammunation)por bala$3$6  municoes"><td>Munição de Pistola (com licença, Ammunation)<span class="sub">por bala</span></td><td class="num">$3</td><td class="num">$6</td></tr><tr data-n="municao de pistola / smg (sem licenca)por bala$20$75  municoes"><td>Munição de Pistola / SMG (sem licença)<span class="sub">por bala</span></td><td class="num">$20</td><td class="num">$75</td></tr><tr data-n="municao de riflepor bala$30$125  municoes"><td>Munição de Rifle<span class="sub">por bala</span></td><td class="num">$30</td><td class="num">$125</td></tr><tr data-n="municao de mosquete (caca)por bala$2$4  municoes"><td>Munição de Mosquete (caça)<span class="sub">por bala</span></td><td class="num">$2</td><td class="num">$4</td></tr></tbody></table></div></article></div></section><section id="equipamento" class="sec"><header class="sec-h"><h2>Coletes e equipamento</h2></header><div class="blocks one"><article class="block"><div class="tw"><table><thead><tr><th>Artigo</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody><tr data-n="colete$2.500$6.250  coletes e equipamento"><td>Colete</td><td class="num">$2.500</td><td class="num">$6.250</td></tr><tr data-n="lockpick$60$310  coletes e equipamento"><td>Lockpick</td><td class="num">$60</td><td class="num">$310</td></tr><tr data-n="cafe (boost)$310$600  coletes e equipamento"><td>Café (boost)</td><td class="num">$310</td><td class="num">$600</td></tr><tr data-n="bomba$1.250$2.500  coletes e equipamento"><td>Bomba</td><td class="num">$1.250</td><td class="num">$2.500</td></tr><tr data-n="dispositivo de hacking$1.500$4.000  coletes e equipamento"><td>Dispositivo de Hacking</td><td class="num">$1.500</td><td class="num">$4.000</td></tr></tbody></table></div></article></div></section><section id="droga" class="sec"><header class="sec-h"><h2>Droga</h2><p>O mínimo está acima do que o NPC paga ($125 por saco). O máximo é o que um território aberto paga ($332 por saco).</p></header><div class="blocks one"><article class="block"><div class="tw"><table><thead><tr><th>Artigo</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody><tr data-n="cocaina (saco processado)por saco$150$350  droga"><td>Cocaína (saco processado)<span class="sub">por saco</span></td><td class="num">$150</td><td class="num">$350</td></tr><tr data-n="metanfetamina (saco processado)por saco$150$350  droga"><td>Metanfetamina (saco processado)<span class="sub">por saco</span></td><td class="num">$150</td><td class="num">$350</td></tr><tr data-n="heroina (saco processado)por saco$150$350  droga"><td>Heroína (saco processado)<span class="sub">por saco</span></td><td class="num">$150</td><td class="num">$350</td></tr><tr data-n="pacote de 10 sacos vaziosfabricam-se 10 sacos com 2 plasticos$20$50  droga"><td>Pacote de 10 sacos vazios<span class="sub">fabricam-se 10 sacos com 2 plásticos</span></td><td class="num">$20</td><td class="num">$50</td></tr><tr data-n="folha de coca / pseudoefedrina / opio (em bruto)por unidade · 10 em bruto dao 5 sacos processados$20$50  droga"><td>Folha de Coca / Pseudoefedrina / Ópio (em bruto)<span class="sub">por unidade · 10 em bruto dão 5 sacos processados</span></td><td class="num">$20</td><td class="num">$50</td></tr></tbody></table></div></article></div></section></main>
+  <p class="empty" id="empty" hidden="">Nada encontrado. Experimenta outra palavra.</p>
+
+  <footer class="foot">
+    <span class="brand"><img src="../logo.png" alt="">First RP</span>
+    <span>Valores de referência da administração do First RP.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const q=document.getElementById('q'), count=document.getElementById('count'), empty=document.getElementById('empty');
+  const rows=[...document.querySelectorAll('tbody tr')];
+  const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  rows.forEach(r=>{
+    const b=r.closest('.block'), s=r.closest('.sec');
+    r.dataset.n=norm(r.textContent)+' '+norm(b.querySelector('h3')?.textContent||'')+' '+norm(s.querySelector('h2').textContent);
+  });
+  const word='itens';
+  function upd(){
+    const v=norm(q.value.trim()); let shown=0;
+    rows.forEach(r=>{const ok=!v||r.dataset.n.includes(v); r.hidden=!ok; if(ok) shown++;});
+    document.querySelectorAll('.block h4').forEach(h=>{const t=h.nextElementSibling; const hide=!!v&&t&&!t.querySelector('tbody tr:not([hidden])'); h.hidden=hide; if(t) t.hidden=hide;});
+    document.querySelectorAll('.block').forEach(b=>{b.hidden=!!v&&!b.querySelector('tbody tr:not([hidden])');});
+    document.querySelectorAll('.sec').forEach(s=>{s.hidden=!!v&&!s.querySelector('.block:not([hidden])');});
+    empty.hidden=shown>0;
+    count.textContent=v?shown+' resultado'+(shown===1?'':'s'):rows.length+' '+word;
+  }
+  q.addEventListener('input',upd); upd();
+})();
+</script>
+
+
+
+</body></html>
